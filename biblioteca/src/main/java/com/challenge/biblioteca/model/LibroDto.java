@@ -1,12 +1,21 @@
 package com.challenge.biblioteca.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LibroDto {
+
     private int id;
+    @JsonAlias("title")
     private String titulo;
+    @JsonAlias("authors")
     private List<AutorDto> autores;
+    @JsonAlias("languages")
     private List<String> idiomas;
+    @JsonAlias("download_count")
     private int cantidadDescargas;
 
     public int getId() { return id; }
@@ -23,6 +32,16 @@ public class LibroDto {
 
     public int getCantidadDescargas() { return cantidadDescargas; }
     public void setCantidadDescargas(int cantidadDescargas) { this.cantidadDescargas = cantidadDescargas; }
+
+    @Override
+    public String toString() {
+        return "Libro: " +
+                "id: " + id +
+                ", titulo: '" + titulo + '\'' +
+                ", autores: " + autores +
+                ", idiomas: " + idiomas +
+                ", cantidadDescargas: " + cantidadDescargas;
+    }
 }
 
 
