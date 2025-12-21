@@ -1,4 +1,7 @@
-package com.challenge.biblioteca.client;
+package com.challenge.biblioteca.cliente;
+
+import com.challenge.biblioteca.model.RespuestaGutendex;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.URI;
@@ -30,5 +33,11 @@ public class GutendexCliente {
         HttpResponse<String> respuesta = clienteHttp.send(solicitud, HttpResponse.BodyHandlers.ofString());
 
         return respuesta.body();
+    }
+
+    public RespuestaGutendex obtenerLibrosComoObjetos(String parametrosConsulta) throws IOException, InterruptedException {
+        String json = obtenerLibros(parametrosConsulta);
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json, RespuestaGutendex.class);
     }
 }
