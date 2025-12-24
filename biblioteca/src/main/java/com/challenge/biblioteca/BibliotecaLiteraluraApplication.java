@@ -46,5 +46,41 @@ public class BibliotecaLiteraluraApplication implements CommandLineRunner {
 
             try {
                 switch (opcion) {
+                    case "1":
+                        System.out.print("Ingrese título: ");
+                        String titulo = scanner.nextLine();
+                        Libro libro = servicio.buscarYGuardarPorTitulo(titulo);
+                        System.out.println(libro != null ? libro : "No encontrado.");
+                        break;
+
+                    case "2":
+                        List<Libro> libros = servicio.listarTodosLibros();
+                        if (libros.isEmpty()) {
+                            System.out.println("No hay libros guardados.");
+                        } else {
+                            libros.forEach(System.out::println);
+                        }
+                        break;
+
+                    case "3":
+                        System.out.print("Ingrese idioma (ej: es, en): ");
+                        String idioma = scanner.nextLine();
+                        List<Libro> librosPorIdioma = servicio.listarPorIdioma(idioma);
+                        if (librosPorIdioma.isEmpty()) {
+                            System.out.println("No se encontraron libros en el idioma: " + idioma);
+                        } else {
+                            librosPorIdioma.forEach(System.out::println);
+                        }
+                        break;
+
+                    case "4":
+                        List<Autor> autores = servicio.listarAutores();
+                        if (autores.isEmpty()) {
+                            System.out.println("No hay autores guardados.");
+                        } else {
+                            autores.forEach(System.out::println);
+                        }
+                        break;
+
     }
 }
