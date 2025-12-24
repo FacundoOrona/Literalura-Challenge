@@ -24,7 +24,27 @@ public class BibliotecaLiteraluraApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
-        //mostrarMenu();
+    public void run(String... args) {
+        mostrarMenu();
+    }
+
+    private void mostrarMenu() {
+        Scanner scanner = new Scanner(System.in);
+        boolean salir = false;
+
+        while (!salir) {
+            System.out.println("\n=== Biblioteca ===");
+            System.out.println("1) Buscar libro por título");
+            System.out.println("2) Listar todos los libros");
+            System.out.println("3) Listar libros por idioma");
+            System.out.println("4) Listar autores");
+            System.out.println("5) Listar autores vivos en determinado año");
+            System.out.println("0) Salir");
+            System.out.print("Seleccione una opción: ");
+
+            String opcion = scanner.nextLine();
+
+            try {
+                switch (opcion) {
     }
 }
