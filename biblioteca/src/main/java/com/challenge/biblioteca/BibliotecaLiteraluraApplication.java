@@ -82,5 +82,30 @@ public class BibliotecaLiteraluraApplication implements CommandLineRunner {
                         }
                         break;
 
+                    case "5":
+                        System.out.print("Ingrese año: ");
+                        int anio = Integer.parseInt(scanner.nextLine());
+                        List<Autor> autoresVivos = servicio.listarAutoresVivosEnAnio(anio);
+                        if (autoresVivos.isEmpty()) {
+                            System.out.println("No se encontraron autores vivos en el año " + anio);
+                        } else {
+                            autoresVivos.forEach(System.out::println);
+                        }
+                        break;
+
+                    case "0":
+                        salir = true;
+                        System.out.println("Saliendo... ¡Gracias por usar la biblioteca!");
+                        break;
+
+                    default:
+                        System.out.println("Opción inválida. Intente nuevamente.");
+                }
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+
+        scanner.close();
     }
 }
